@@ -9,10 +9,16 @@ import java.util.Arrays;
 public class Main extends ListenerAdapter {
     public static void main(String[] args) throws LoginException {
         JDABuilder builder = new JDABuilder(AccountType.BOT);
-        String token = "";
-        builder.setToken(token);
-        builder.addEventListener(new Main());
-        builder.buildAsync();
+        Env env = new Env();
+
+        String token = env.getEnv("DISCORD_API_TOKEN");
+
+        System.out.println(token);
+        if (token != null) {
+            builder.setToken(token);
+            builder.addEventListener(new Main());
+            builder.buildAsync();
+        }
     }
 
     @Override
@@ -47,7 +53,7 @@ public class Main extends ListenerAdapter {
     }
 
     private void help(MessageReceivedEvent event, String[] message) {
-        String response="";
+        String response;
         if(message.length==1){
             response = "Commands: \n"
             +"help: this page;\n"
@@ -60,6 +66,14 @@ public class Main extends ListenerAdapter {
                     + "Musical module soon\n";
                     break;
 
+                case "MOD":
+                    response = "Commands: \n"
+                            + "Moderator module soon\n";
+                    break;
+                case "ADMIN":
+                    response = "Commands: \n"
+                            + "Admin module soon\n";
+                    break;
                 default:
                     response = "None here";
                     break;
