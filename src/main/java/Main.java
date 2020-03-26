@@ -10,6 +10,10 @@ public class Main extends ListenerAdapter {
     public static void main(String[] args) throws LoginException {
         JDABuilder builder = new JDABuilder(AccountType.BOT);
         Env env = new Env();
+        if(env.isHashNull()){
+            System.out.println("Application should be stopped.");
+            return;
+        }
 
         String token = env.getEnv("DISCORD_API_TOKEN");
 
