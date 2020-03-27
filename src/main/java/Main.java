@@ -2,6 +2,7 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import util.Env;
 
 import javax.security.auth.login.LoginException;
 import java.util.Arrays;
@@ -28,8 +29,6 @@ public class Main extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
         if(event.getAuthor().isBot()) return;
-
-
 
         String prefix = "0";
         String[] message = event.getMessage().getContentRaw().split(" ");

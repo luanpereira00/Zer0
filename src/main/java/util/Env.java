@@ -1,3 +1,5 @@
+package util;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,7 +10,7 @@ import java.util.HashMap;
 public class Env {
     private HashMap<String,String> hashEnv;
 
-    Env(){
+    public Env(){
         try {
             hashEnv = new HashMap<>();
             startENV();
@@ -18,11 +20,11 @@ public class Env {
         }
     }
 
-    boolean isHashNull(){
+    public boolean isHashNull(){
         return hashEnv==null;
     }
 
-    String getEnv(String key){
+    public String getEnv(String key){
         return hashEnv.get(key);
     }
 
