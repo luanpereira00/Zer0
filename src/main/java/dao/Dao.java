@@ -1,17 +1,18 @@
 package dao;
 
 import java.util.List;
-import java.util.Optional;
+
+import exception.DataBaseException;
 
 public interface Dao<T> {
 
-    Optional<T> get(long id);
+    T get(Long id) throws DataBaseException;
 
-    List<T> getAll();
+    List<T> getAll() throws DataBaseException;
 
-    void save(T t);
+    void save(T t) throws DataBaseException;
 
-    void update(T t, String[] params);
+    void update(T t, String[] params) throws DataBaseException;
 
-    void delete(T t);
+    void delete(T t) throws DataBaseException;
 }
