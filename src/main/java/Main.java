@@ -1,10 +1,13 @@
+import commands.Command;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import util.Env;
+import util.CommandsUtil;
 
 import javax.security.auth.login.LoginException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main extends ListenerAdapter {
@@ -29,29 +32,27 @@ public class Main extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
         if(event.getAuthor().isBot()) return;
+        String messageString =  event.getMessage().getContentRaw();
 
-        String prefix = "0";
-        String[] message = event.getMessage().getContentRaw().split(" ");
-        message[0] = message[0].toUpperCase();
+        //TODO get prefix on server
+        String prefix = "!";
+        if(!messageString.startsWith(prefix)) return;
 
-        System.out.println("We received a message from "
+        //"!ping bla"
+        messageString = messageString.substring(prefix.length());
+
+        String[] message = messageString.split(" ");
+
+        System.out.println("We received a message of "
                 + event.getAuthor().getName() + ": "
                 + Arrays.toString(message)
         );
 
-        if (message[0].equals(prefix + "PING")) {
-            ping(event);
+        Command command = CommandsUtil.getCommand(new ArrayList(Arrays.asList(message)));
+        if(command != null) {
+            String result = command.run(event);
+            if(result!=null) event.getChannel().sendMessage(result).queue();
         }
-
-        if(message[0].equals(prefix + "HELP")){
-            help(event, message);
-        }
-
-        /*if(message.equals(prefix + "SERVERINFO"))
-
-        else {
-            event.getChannel().sendMessage(event.getMessage()).queue();
-        }*/
 
     }
 
@@ -83,10 +84,5 @@ public class Main extends ListenerAdapter {
             }
         }
         event.getChannel().sendMessage(response).queue();
-    }
-
-    private void ping(MessageReceivedEvent event) {
-        String ping = Long.toString(event.getJDA().getPing());
-        event.getChannel().sendMessage("Pong! Ping is " + ping + "ms.").queue();
     }
 }
