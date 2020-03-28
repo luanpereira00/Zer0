@@ -1,0 +1,6 @@
+{
+  "COMMAND_PING_RESPONSE":{
+    "FIRST_ELEM":"Pong! Ping is",
+    "SECOND_ELEM":"ms."
+  }
+}
