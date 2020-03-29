@@ -1,13 +1,22 @@
 package util;
 
 import commands.Command;
-import commands.ICommand;
 import commands.ECommand;
 import commands.general.*;
 
 import java.util.ArrayList;
 
+/*
+* Implements methods util to commands
+*/
 public class CommandsUtil {
+
+    /*
+    * Finds the method passed in a message - params are optional
+    *
+    * @param message The message that invokes listener
+    * @return the command recognized - null if nothing
+    */
     public static Command getCommand(ArrayList<String> message) {
         ECommand eCommand;
         if(message != null && message.get(0) != null) {
@@ -24,10 +33,22 @@ public class CommandsUtil {
         return command;
     }
 
+    /*
+    * returns a command when passing the enumeration of commands
+    *
+    * @param eCommand enumeration of commands
+    * @return the command recognized by bot
+    */
     private static Command getCommandByEnum(ECommand eCommand){
         return CommandsUtil.createCommand(eCommand);
     }
 
+    /*
+    * Creates a command using an enum passed by param
+    *
+    * @param eCommand enumeration of commands
+    * @return new Instance of command
+    */
     private static Command createCommand(ECommand eCommand) {
         switch(eCommand){
             case PING:
@@ -37,6 +58,12 @@ public class CommandsUtil {
         }
     }
 
+    /*
+    * instantiate a enumeration of command
+    *
+    * @param command string with the command to interpret as enum
+    * @return the command interpreted by bot - ERROR if no mapped or default
+    */
     private static ECommand getECommand(String command){
         ECommand ecommand = null;
         //TODO dictionary to aliases commands
