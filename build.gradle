@@ -18,4 +18,10 @@ repositories {
 
 dependencies {
     compile 'net.dv8tion:JDA:3.5.0_329'
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.9.8'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.8'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
 }
+
+

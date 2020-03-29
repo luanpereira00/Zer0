@@ -2,78 +2,69 @@ package commands;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
+/*
+* A class that represents commands fields
+ */
 public abstract class Command implements ICommand {
     protected List aliases;
-    protected CommandCategory commandCategory;
+    protected CommandModule commandModule;
     protected String description;
     protected Integer cooldown;
     protected String usage;
-
-
 
     //TODO private final Permissions permissions;
     //TODO private final Map<String, SubCommand> subCommandAssociations = new HashMap<>();
     //TODO private final CommandLineParser cliParser = new DefaultParser();
 
-    protected Command(){
-        aliases = null;
-        commandCategory = null;
-        description = null;
-        cooldown = null;
-    }
-
-    protected Command(List<String> aliases, CommandCategory commandCategory, String description, Integer cooldown){
-        setAliases(aliases);
-        setCommandCategory(commandCategory);
-        setDescription(description);
-        setCooldown(cooldown);
-    }
-
-    @Override
+    //getter
     public List<String> getAliases() {
         return aliases;
     }
 
+    //setter
     public void setAliases(List<String> aliases) {
         this.aliases = aliases;
     }
 
-    public CommandCategory getCommandCategory() {
-        return commandCategory;
+    //getter
+    public CommandModule getCommandModule() {
+        return commandModule;
     }
 
-    public void setCommandCategory(CommandCategory commandCategory) {
-        this.commandCategory = commandCategory;
+    //setter
+    public void setCommandModule(CommandModule commandModule) {
+        this.commandModule = commandModule;
     }
 
+    //getter
     public String getDescription() {
         return description;
     }
 
+    //setter
     public void setDescription(String description) {
         this.description = description;
     }
 
+    //getter
     public Integer getCooldown() {
         return cooldown;
     }
 
+    //setter
     public void setCooldown(Integer cooldown) {
         this.cooldown = cooldown;
     }
 
+    //getter
     public String getUsage() {
         return usage;
     }
 
+    //setter
     public void setUsage(String usage) {
         this.usage = usage;
-    }
-
-    public String run(MessageReceivedEvent event){
-        return null;
     }
 }
