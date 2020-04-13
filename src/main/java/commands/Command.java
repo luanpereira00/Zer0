@@ -1,22 +1,47 @@
 package commands;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import parameters.CommandParameter;
+import parameters.ETypeParameter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
 * A class that represents commands fields
  */
 public abstract class Command implements ICommand {
-    protected List aliases;
-    protected CommandModule commandModule;
-    protected String description;
-    protected Integer cooldown;
-    protected String usage;
+    protected List aliases; //aliases to this command - Is this necessary?
+    protected CommandModule commandModule; //Which module this command is part of
+    protected String description; //Description of this command - Is this necessary?
+    protected Integer cooldown; //Cooldown of use
+    protected String usage; //Example how to use - Is this necessary?
+    protected ETypeParameter typeParameter; //If this command accepts parameters
+    protected ArrayList<CommandParameter> parameters; //Parametes of this command when it has
+    //TODO private final Permissions permissions
 
-    //TODO private final Permissions permissions;
-    //TODO private final Map<String, SubCommand> subCommandAssociations = new HashMap<>();
-    //TODO private final CommandLineParser cliParser = new DefaultParser();
+    protected Command(){
+        setTypeParameter(ETypeParameter.UNUSED);
+        setCooldown(5);
+    }
+
+    //Getter
+    public ETypeParameter getTypeParameter() {
+        return typeParameter;
+    }
+
+    //Setter
+    protected void setTypeParameter(ETypeParameter typeParameter) {
+        this.typeParameter = typeParameter;
+    }
+
+    public ArrayList<CommandParameter> getParameters() {
+        return parameters;
+    }
+
+    protected void setParameters(ArrayList<CommandParameter> parameters) {
+        this.parameters = parameters;
+    }
 
     //getter
     public List<String> getAliases() {
@@ -24,7 +49,7 @@ public abstract class Command implements ICommand {
     }
 
     //setter
-    public void setAliases(List<String> aliases) {
+    protected void setAliases(List<String> aliases) {
         this.aliases = aliases;
     }
 
@@ -34,7 +59,7 @@ public abstract class Command implements ICommand {
     }
 
     //setter
-    public void setCommandModule(CommandModule commandModule) {
+    protected void setCommandModule(CommandModule commandModule) {
         this.commandModule = commandModule;
     }
 
@@ -44,7 +69,7 @@ public abstract class Command implements ICommand {
     }
 
     //setter
-    public void setDescription(String description) {
+    protected void setDescription(String description) {
         this.description = description;
     }
 
@@ -54,7 +79,7 @@ public abstract class Command implements ICommand {
     }
 
     //setter
-    public void setCooldown(Integer cooldown) {
+    protected void setCooldown(Integer cooldown) {
         this.cooldown = cooldown;
     }
 
@@ -64,7 +89,11 @@ public abstract class Command implements ICommand {
     }
 
     //setter
-    public void setUsage(String usage) {
+    protected void setUsage(String usage) {
         this.usage = usage;
+    }
+
+    public boolean hasParameter() {
+        return (getTypeParameter() == ETypeParameter.UNUSED ? false : true);
     }
 }

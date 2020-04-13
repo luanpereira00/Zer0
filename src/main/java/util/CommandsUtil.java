@@ -26,7 +26,7 @@ public class CommandsUtil {
         }
         Command command = CommandsUtil.getCommandByEnum(eCommand);
 
-        if(command != null && command.requireParameter()){
+        if(command != null && command.hasParameter()){
             message.remove(0);
             command.addParameter(message);
         }
@@ -53,6 +53,8 @@ public class CommandsUtil {
         switch(eCommand){
             case PING:
                 return new PingCommand();
+            case HELP:
+                return new HelpCommand();
             default:
                 return null;
         }

@@ -1,10 +1,11 @@
 package commands.general;
 import commands.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import util.ELanguage;
 import util.JSONManager;
+import util.TextContent;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /*
 * Defines how a command named Ping will work
@@ -17,19 +18,12 @@ public class PingCommand  extends Command {
     */
     public PingCommand(){
         setCommandModule(CommandModule.GENERAL);
-        setCooldown(5);
     }
 
     //Not implemented yet
     @Override
-    public Result help() {
-        return null;
-    }
-
-    //Not implemented yet
-    @Override
-    public List<Command> getSubcommands() {
-        return null;
+    public String help() {
+        return PingTextContent.PING_DESCRIPTION.getName();
     }
 
     /*
@@ -37,7 +31,7 @@ public class PingCommand  extends Command {
     */
     @Override
     public String getName() {
-        return ECommand.PING.name();
+        return ECommand.PING.getName();
     }
 
     //Not implemented yet
@@ -46,24 +40,19 @@ public class PingCommand  extends Command {
         return;
     }
 
-    //Not implemented yet
-    @Override
-    public boolean requireParameter() {
-        return false;
-    }
-
     /*
     * Implements run method
     */
     @Override
     public String run(MessageReceivedEvent event, ELanguage serverLanguage) {
+        //TODO Redo schema of JSONs file to have parameters on strings like 'some text %s text bla bla '
         String first_element = JSONManager.getInstance().getTextContent(serverLanguage, getCommandModule(), PingTextContent.PING_RESPONSE_FIRST);
         String second_element = JSONManager.getInstance().getTextContent(serverLanguage, getCommandModule(), PingTextContent.PING_RESPONSE_SECOND);
         return first_element + " " + ping(event) + " " + second_element;
     }
 
     /*
-    * Text Contents of bot
+    * Text Contents of ping command
     */
     public enum PingTextContent implements TextContent {
         PING_DESCRIPTION("COMMAND_PING_DESCRIPTION"),

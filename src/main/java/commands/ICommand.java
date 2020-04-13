@@ -1,6 +1,7 @@
 package commands;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import util.ELanguage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,8 @@ public interface ICommand {
     /*
     * Returns the help of command
     */
-    public abstract Result help();
-
-    /*
-    * Returns a list of subcommands
-    */
-    public abstract List<Command> getSubcommands();
+    //TODO Return as Result Class
+    public abstract String help();
 
     /*
     * Returns name of command
@@ -36,9 +33,9 @@ public interface ICommand {
     public abstract void addParameter(ArrayList<String> message);
 
     /*
-    * true if a method require parameter, false otherwise
+    * true if a method has parameter, either OPTIONAL or REQUIRED, false otherwise
     */
-    public abstract boolean requireParameter();
+    public abstract boolean hasParameter();
 
     /*
     * A method to execute an action

@@ -1,4 +1,6 @@
 {
-  "PING_RESPONSE_FIRST": "Pong! Ping is",
-  "PING_RESPONSE_SECON" : "ms."
+  "COMMAND_PING_RESPONSE_FIRST" : "Pong! O ping é de",
+  "COMMAND_PING_RESPONSE_SECOND" : "milissegundos.",
+  "COMMAND_PING_DESCRIPTION" : "Calcula o tempo de reposta entre o usuário e o Zer0",
+  "COMMAND_HELP_RESPONSE" : "Responde com uma breve descrição de todos os comandos"
 }

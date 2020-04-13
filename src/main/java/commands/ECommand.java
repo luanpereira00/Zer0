@@ -5,6 +5,7 @@ Enumeration of commands
 */
 public enum ECommand {
     PING("PING"),
+    HELP("HELP"),
     ERROR("ERROR");
 
     private String displayName;
@@ -20,6 +21,6 @@ public enum ECommand {
     * @return the name
     */
     public String getName(){
-        return this.toString();
+        return displayName;
     }
 }
